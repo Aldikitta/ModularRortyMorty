@@ -250,8 +250,8 @@ org-jetbrains-kotlinx-kotlinx-coroutines-core = { module = "org.jetbrains.kotlin
 org-jetbrains-kotlinx-kotlinx-coroutines-core-jvm = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm", version.ref = "org-jetbrains-kotlinx" }
 
 [plugins]
-com-android-application = "com.android.application:7.3.0"
-com-android-library = "com.android.library:7.3.0"
+com-android-application = "com.android.application:7.3.1"
+com-android-library = "com.android.library:7.3.1"
 com-github-ben-manes-versions = "com.github.ben-manes.versions:0.42.0"
 com-google-dagger-hilt-android = "com.google.dagger.hilt.android:2.43.2"
 com-google-devtools-ksp = "com.google.devtools.ksp:1.7.10-1.0.6"

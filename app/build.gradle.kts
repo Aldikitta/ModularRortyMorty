@@ -5,9 +5,9 @@ plugins {
 //    id 'dagger.hilt.android.plugin'
     id("com.google.dagger.hilt.android")
     id("kotlin-parcelize")
-    id("com.google.firebase.crashlytics")
-    id("com.google.firebase.firebase-perf")
-    id("com.google.gms.google-services")
+//    id("com.google.firebase.crashlytics")
+//    id("com.google.firebase.firebase-perf")
+//    id("com.google.gms.google-services")
     id("kotlin-kapt")
     id("com.google.devtools.ksp") version "1.7.10-1.0.6"
 }
@@ -15,6 +15,14 @@ if (file("google-services.json").exists()) {
     apply(plugin = "com.google.gms.google-services")
     apply(plugin = "com.google.firebase.crashlytics")
 }
+
+fun getBaseUrl(): String {
+    return com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir).getProperty("BaseUrl")
+}
+fun getDBName(): String {
+    return com.android.build.gradle.internal.cxx.configure.gradleLocalProperties(rootDir).getProperty("DbName")
+}
+
 android {
     namespace = "com.aldikitta.rortymorty"
     compileSdk = 33
@@ -36,6 +44,13 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        debug{
+            signingConfig = signingConfigs.getByName("debug")
+            enableUnitTestCoverage = false
+            isDebuggable = true
+            buildConfigField("String", "BASE_URL", getBaseUrl())
+            buildConfigField("String", "DB_NAME", getDBName())
         }
     }
     compileOptions {
